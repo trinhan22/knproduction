@@ -704,30 +704,64 @@
                 <p class="fl-project-eyebrow">Quick Contact</p>
                 <div aria-hidden="true" class="fl-spacing-2em"></div>
                 <div aria-hidden="true" class="fl-spacing-2em"></div>
-                <form id="wf-form-Contact-Form" name="wf-form-Contact-Form" data-name="Contact Form" method="get"
-                  class="contact-form" data-wf-page-id="65a41f317b3b901ff1187414"
-                  data-wf-element-id="ded23f2b-562b-2fdf-4e28-58c7a9c8b348">
+                <form
+                  id="wf-form-Contact-Form"
+                  name="wf-form-Contact-Form"
+                  method="POST"
+                  action="https://formspree.io/f/xyeyzqpq"
+                  class="contact-form">
+
                   <div class="form-field-wrapper">
-                    <input class="form-input w-input" maxlength="256" name="Name-2" data-name="Name 2"
-                      placeholder="Full Name" type="text" id="Name-2" required="" />
+                    <input
+                      class="form-input w-input"
+                      maxlength="256"
+                      name="name"
+                      placeholder="Full Name"
+                      type="text"
+                      id="Name-2"
+                      required
+                    />
                   </div>
+
                   <div class="form-field-wrapper">
-                    <input class="form-input w-input" maxlength="256" name="Email-2" data-name="Email 2"
-                      placeholder="Email address" type="email" id="Email-2" required="" />
+                    <input
+                      class="form-input w-input"
+                      maxlength="256"
+                      name="email"
+                      placeholder="Email address"
+                      type="email"
+                      id="Email-2"
+                      required
+                    />
                   </div>
+
                   <div class="form-field-wrapper">
-                    <textarea id="Text-Message-2" name="Text-Message-2" maxlength="5000" data-name="Text Message 2"
-                      placeholder="Message..." class="form-input is-text-area w-input"></textarea>
+                    <textarea
+                      id="Text-Message-2"
+                      name="message"
+                      maxlength="5000"
+                      placeholder="Message..."
+                      class="form-input is-text-area w-input"
+                      required
+                    ></textarea>
                   </div>
-                  <div id="w-node-ded23f2b-562b-2fdf-4e28-58c7a9c8b34f-f1187414" class="form-button-wrapper">
-                    <input type="submit" data-wait="Please wait..." class="button w-button" value="Send" />
+
+                  <div class="form-button-wrapper">
+                    <input
+                      type="submit"
+                      data-wait="Please wait..."
+                      class="button w-button"
+                      value="Send"
+                    />
                   </div>
+
                 </form>
                 <div class="form-message-success w-form-done">
-                  <div>Oops! Something went wrong while submitting the form.</div>
+                  <div>Gửi thành công! Cảm ơn bạn đã liên hệ với KN Production.</div>
                 </div>
+
                 <div class="form-message-error w-form-fail">
-                  <div>Oops! Something went wrong while submitting the form.</div>
+                  <div>Có lỗi xảy ra. Vui lòng thử lại sau.</div>
                 </div>
               </div>
             </div>
