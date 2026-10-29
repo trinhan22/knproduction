@@ -165,17 +165,28 @@
     
     /* Sidebar */
     .kn-sidebar { width: 340px; flex-shrink: 0; position: sticky; top: 120px; z-index: 10; }
+    
+    /* Làm dày nút Badge */
     .kn-badge {
-        background-color: #23a99e; color: #fff; display: inline-block; padding: 8px 20px;
-        border-radius: 30px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1.5px;
+        background-color: #23a99e; color: #fff; display: inline-flex; 
+        align-items: center; justify-content: center;
+        padding: 12px 24px; /* Tăng padding trên/dưới để nút dày hơn */
+        border-radius: 30px; font-size: 12px; font-weight: 700; text-transform: uppercase; 
+        margin-bottom: 30px; /* Căn lề dưới */
+        letter-spacing: 1.5px;
         box-shadow: 0 4px 12px rgba(35, 169, 158, 0.4);
     }
+    
     .kn-contact-card {
         background: linear-gradient(145deg, #121212, #080808); border: 1px solid rgba(35, 169, 158, 0.2); border-radius: 24px;
-        padding: 45px 30px 35px; position: relative; margin-top: 30px;
+        padding: 45px 30px 35px; position: relative; 
+        margin-top: 0; 
         box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.3s;
     }
-    .kn-contact-card:hover { border-color: rgba(35, 169, 158, 0.5); }
+    .kn-contact-card:hover { 
+        border-color: rgba(35, 169, 158, 0.5); 
+        transform: translateY(-4px); 
+    }
     .kn-icon-circle {
         width: 64px; height: 64px; background: linear-gradient(135deg, #23a99e, #177870); border-radius: 50%;
         display: flex; align-items: center; justify-content: center; position: absolute; top: -32px; left: 30px;
@@ -193,58 +204,154 @@
     .kn-btn:hover { background-color: #1b8a81; transform: translateY(-2px); }
     .kn-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
 
-    /* Main Content */
+    /* ========================================================
+       CẤU TRÚC MAIN CONTENT - BẢNG TUYỂN DỤNG CHUYÊN NGHIỆP
+       ======================================================== */
     .kn-main-content { flex-grow: 1; min-width: 0; }
     
-    /* Filters */
-    .kn-filters { display: flex; gap: 15px; margin-bottom: 40px; }
-    .kn-filter-input {
-        background-color: #111; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white;
-        padding: 14px 20px; font-size: 14px; outline: none; cursor: pointer; transition: 0.3s;
+    /* Filters & Search */
+    .kn-filters { 
+        display: flex; gap: 15px; 
+        margin-bottom: 30px; /* Khớp với margin-bottom của .kn-badge */
+        /* Đã xóa giới hạn height: 35px để thanh search tự do giãn nở */
     }
-    .kn-filter-input:hover { border-color: #23a99e; }
     .kn-search-box {
         flex-grow: 1; display: flex; align-items: center; background-color: #111;
-        border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0 20px; transition: 0.3s;
+        border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; 
+        padding: 2px 20px; /* Thêm padding bao quanh box */
+        transition: all 0.3s ease; box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
     }
-    .kn-search-box:hover { border-color: #23a99e; }
-    .kn-search-box input { border: none; background: transparent; color: white; padding: 14px; width: 100%; outline: none; font-size: 14px; }
-    .kn-search-box input::placeholder { color: #777; }
-    .kn-search-box svg { fill: #777; width: 18px; }
+    .kn-search-box:focus-within { border-color: #23a99e; box-shadow: 0 0 0 1px #23a99e; }
+    
+    /* Làm dày ô nhập liệu */
+    .kn-search-box input { 
+        border: none; background: transparent; color: white; 
+        padding: 11px 0; /* Tăng chiều cao vùng nhập liệu để box dày lên */
+        width: 100%; outline: none; font-size: 15px; 
+    }
+    .kn-search-box input::placeholder { color: #666; font-style: italic; }
+    .kn-search-box svg { fill: #666; width: 20px; margin-right: 12px; }
 
-    /* Job List */
-    .kn-job-list { border-top: 1px solid rgba(255,255,255,0.1); }
-    .kn-job-item {
-        display: flex; justify-content: space-between; align-items: center; padding: 35px 25px;
-        border-bottom: 1px solid rgba(255,255,255,0.08); transition: all 0.3s ease; border-radius: 16px; margin-bottom: 10px;
+    /* Job List & Hover Effect */
+    .kn-job-list { 
+        display: flex; flex-direction: column; gap: 15px; 
+        margin-top: 0; /* Bỏ margin-top vì đã dùng margin-bottom ở .kn-filters */
     }
-    .kn-job-item:hover { background-color: rgba(35, 169, 158, 0.05); border-color: rgba(35, 169, 158, 0.2); transform: translateX(5px); }
-    .kn-job-info h3 { font-size: 24px; font-weight: 700; margin-bottom: 15px; color: white; letter-spacing: -0.5px; }
-    .kn-tags { display: flex; gap: 10px; flex-wrap: wrap; }
-    .kn-tag { border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.02); border-radius: 20px; padding: 6px 16px; font-size: 12px; color: #bbb; }
+    .kn-job-item {
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 35px 30px; 
+        background: linear-gradient(145deg, #121212, #080808); /* Nền Gradient giống hệt Card */
+        border: 1px solid rgba(35, 169, 158, 0.2); /* Viền giống Card */
+        border-radius: 24px; /* Bo góc 24px giống Card */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Đổ bóng giống Card */
+        transition: all 0.3s ease;
+    }
+    
+    .kn-job-item:hover { 
+        border-color: rgba(35, 169, 158, 0.5); /* Hover sáng viền giống Card */
+        transform: translateY(-4px); /* Hover nhấc lên giống Card */
+    }
+    .kn-job-info h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; color: white; letter-spacing: -0.5px; }
+    .kn-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .kn-tag { border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); border-radius: 20px; padding: 6px 14px; font-size: 12px; color: #bbb; font-weight: 500; }
+    .kn-tag.highlight { border-color: rgba(35,169,158,0.4); background: rgba(35,169,158,0.1); color: #23a99e; }
+    
+    .no-results { text-align: center; color: #888; padding: 40px; font-size: 15px; display: none; background: #111; border-radius: 16px; border: 1px dashed rgba(255,255,255,0.1); }
 
     /* Job Detail View */
-    #kn-job-detail-view { display: none; background: #0a0a0a; padding: 40px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08); }
-    .kn-back-btn {
-        display: inline-flex; align-items: center; gap: 8px; color: #23a99e; font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 30px; transition: 0.3s;
-    }
+    #kn-job-detail-view { display: none; background: #111; padding: 40px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .kn-back-btn { display: inline-flex; align-items: center; gap: 8px; color: #888; font-size: 13px; font-weight: 600; cursor: pointer; margin-bottom: 25px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
     .kn-back-btn svg { width: 16px; fill: currentColor; }
-    .kn-back-btn:hover { opacity: 0.8; transform: translateX(-3px); }
+    .kn-back-btn:hover { color: #23a99e; transform: translateX(-5px); }
     
-    .kn-detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 20px; }
-    .kn-detail-header h2 { font-size: 36px; font-weight: 800; margin-bottom: 15px; color: white; letter-spacing: -1px; }
-    .kn-divider { height: 1px; background-color: rgba(255,255,255,0.1); margin: 30px 0; }
+    .kn-detail-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+    .kn-detail-header h2 { 
+        font-size: 22px; /* Thu nhỏ từ 24px xuống 22px */
+        font-weight: 800; margin-bottom: 10px; 
+        color: white; letter-spacing: -0.5px; line-height: 1.3; 
+    }
+    .kn-divider { height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent); margin: 25px 0; }
     
-    .kn-job-desc { color: #ccc; line-height: 1.8; }
-    .kn-job-desc h4 { font-size: 20px; font-weight: 700; margin-bottom: 20px; color: white; }
-    .kn-job-desc p { margin-bottom: 15px; }
-    .kn-job-desc strong { color: white; font-weight: 700; }
-    .kn-job-desc h5 { font-size: 15px; font-weight: 700; margin: 25px 0 15px 0; color: #23a99e; text-transform: uppercase; letter-spacing: 1px; }
-    .kn-job-desc ul { margin-left: 20px; margin-bottom: 20px; }
-    .kn-job-desc li { margin-bottom: 12px; font-size: 15px; list-style-type: disc; color: #bbb; }
+    /* ========================================================
+       CĂN CHỈNH NỘI DUNG CHI TIẾT CÔNG VIỆC (ĐỒNG BỘ SIZE CHỮ)
+       ======================================================== */
+    .kn-job-desc { 
+        color: #d1d1d1; 
+        text-align: justify; 
+    }
+    
+    /* Tiêu đề chính (VD: TỔNG QUAN CHƯƠNG TRÌNH) */
+    .kn-job-desc h4 { 
+        font-size: 16px; 
+        font-weight: 700; margin-bottom: 15px; 
+        color: white; border-left: 3px solid #23a99e; padding-left: 12px; 
+        text-align: left; text-transform: uppercase; letter-spacing: 1px; 
+    }
+    
+    /* Tiêu đề phụ (VD: Mô tả công việc...) */
+    .kn-job-desc h5 { 
+        font-size: 15px; 
+        font-weight: 700; margin: 25px 0 15px 0; 
+        color: #23a99e; text-align: left; 
+    }
+    
+    /* ÉP BUỘC ĐỒNG BỘ SIZE CHỮ GIỮA ĐOẠN VĂN VÀ DANH SÁCH */
+    .kn-job-desc p, 
+    .kn-job-desc li { 
+        font-size: 14px; /* Fix cứng size chữ để không bị to bất thường */
+        line-height: 1.7; /* Khoảng cách dòng dễ đọc */
+        margin-bottom: 12px; 
+    }
+    
+    .kn-job-desc strong { 
+        color: white; font-weight: 700; 
+    }
+    
+    /* Tinh chỉnh lề cho danh sách gạch đầu dòng */
+    .kn-job-desc ul { 
+        margin-left: 20px; 
+        margin-bottom: 20px; 
+    }
+    .kn-job-desc li { 
+        list-style-type: square; 
+        color: #d1d1d1; 
+        padding-left: 8px; /* Đẩy chữ cách xa dấu chấm vuông 1 xíu cho thoáng */
+    }
+
+    /* Hiệu ứng chuyển cảnh (Animation) */
+    #kn-job-list-view, #kn-job-detail-view { transition: opacity 0.4s ease, transform 0.4s ease; }
 
     /* ========================================================
-       CẢI TIẾN PHẦN "PHÁT TRIỂN CÙNG NHAU" (ĐỒNG BỘ & ĐẸP HƠN)
+       TỐI ƯU HIỂN THỊ TRÊN MOBILE (RESPONSIVE)
+       ======================================================== */
+    @media (max-width: 767px) {
+        .kn-job-item { 
+            flex-direction: column; 
+            align-items: flex-start; 
+            gap: 20px; 
+            padding: 25px 20px; 
+        }
+        .kn-job-item .kn-btn { 
+            width: 100%; /* Tràn viền nút bấm trên mobile */
+            justify-content: center; 
+        }
+        #kn-job-detail-view { 
+            padding: 30px 20px; /* Thu nhỏ khoảng cách lề */
+        }
+        .kn-detail-header { 
+            flex-direction: column; 
+            align-items: flex-start; 
+            gap: 20px; 
+        }
+        .kn-detail-header .kn-btn { 
+            width: 100%; 
+            justify-content: center; 
+        }
+        .kn-detail-header h2 { font-size: 26px; }
+    }
+
+    /* ========================================================
+       CẢI TIẾN PHẦN "PHÁT TRIỂN CÙNG NHAU" (ĐỒNG BỘ GIAO DIỆN)
        ======================================================== */
     .kn-culture-section {
         padding: 100px 0;
@@ -256,50 +363,47 @@
         gap: 30px;
         margin-top: 50px;
     }
+    
+    /* Thiết kế lại card đồng bộ với Job Card và Contact Card */
     .kn-culture-card {
-        background: linear-gradient(145deg, #161616, #0c0c0c);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px;
-        padding: 40px 30px;
+        background: linear-gradient(145deg, #121212, #080808); /* Đổi sang nền đen sẫm cao cấp */
+        border: 1px solid rgba(35, 169, 158, 0.2); /* Đồng bộ màu viền xanh mint */
+        border-radius: 24px; /* Đồng bộ độ bo góc */
+        padding: 45px 30px;
         position: relative;
         overflow: hidden;
-        transition: all 0.4s ease;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Đồng bộ đổ bóng */
     }
-    .kn-culture-card::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 3px;
-        background: linear-gradient(90deg, transparent, #23a99e, transparent);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-    }
+    
+    /* Đồng bộ hiệu ứng Hover: sáng viền và nhấc lên */
     .kn-culture-card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(35, 169, 158, 0.4);
+        transform: translateY(-4px); 
+        border-color: rgba(35, 169, 158, 0.5);
         box-shadow: 0 15px 35px rgba(0,0,0,0.6);
     }
-    .kn-culture-card:hover::before {
-        opacity: 1;
-    }
+    
     .kn-culture-number {
-        font-size: 48px;
-        font-weight: 666;
+        font-size: 42px; /* Chỉnh lại size số cho thanh lịch hơn */
+        font-weight: 700;
         color: #23a99e;
-        margin-bottom: 15px;
-        letter-spacing: -2px;
+        margin-bottom: 20px;
+        letter-spacing: -1.5px;
     }
     .kn-culture-title {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 700;
         color: white;
         margin-bottom: 12px;
+        line-height: 1.3;
     }
     .kn-culture-text {
-        color: #999;
-        font-size: 14px;
+        color: #aaa; /* Đồng bộ màu text phụ */
+        font-size: 15px;
         line-height: 1.6;
     }
 
+    /* Responsive cho Culture Grid */
     @media (max-width: 991px) {
         .kn-hiring-layout { flex-direction: column; gap: 40px; }
         .kn-sidebar { width: 100%; position: static; }
@@ -337,11 +441,29 @@
   </div>
   <div class="w-embed">
     <style>
-      ::-webkit-scrollbar { width: 5px; }
-      ::-webkit-scrollbar-track { background: transparent; }
-      ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.25); border-radius: 999px; }
-      ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.5); }
-      html { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.25) transparent; }
+      /* ===== Dark Minimal Scrollbar ===== */
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 999px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      /* Firefox */
+      html {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+      }
     </style>
   </div>
 
@@ -533,8 +655,8 @@
           <div class="container-large">
             
             <h2 class="fl-act-hero-heading tricks u-show-on-load" style="margin-bottom: 20px;">
-              <span>Make your </span>
-              <span style="color: #23a99e;">next career </span><span class="text-weight-semibold">move</span>
+              <span class="text-weight-semibold">Make your </span>
+              <span style="color: #23a99e;">next career </span>move</span>
             </h2>
             
             <div class="kn-hiring-layout">
@@ -543,17 +665,17 @@
                   <div class="kn-badge">Việc làm đang tuyển</div>
                   
                   <div class="kn-contact-card">
-                      <h2>Cơ hội<br>cùng chúng tôi</h2>
-                      <p>Chúng tôi luôn mong muốn khám phá những tài năng mới. Vui lòng gửi CV và đường dẫn portfolio của bạn đến:</p>
-                      <span class="email">knproduction.work@gmail.com</span>
-                      <a href="mailto:knproduction.work@gmail.com" class="kn-btn">
-                          Liên hệ ngay
-                          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                      </a>
-                  </div>
+                    <h2>Sẵn sàng bấm máy?</h2>
+                    <p>KN Production luôn tìm kiếm những mảnh ghép đam mê, sẵn sàng lăn xả vì nghệ thuật. Hãy chia sẻ góc nhìn của bạn qua CV và Portfolio gửi về:</p>
+                    <span class="email">knproduction.work@gmail.com</span>
+                    <a href="mailto:knproduction.work@gmail.com" class="kn-btn">
+                        Ứng tuyển ngay
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
               </div>
       
-              <!-- KHU VỰC DANH SÁCH VÀ CHI TIẾT TUYỂN DỤNG CTV -->
+<!-- KHU VỰC DANH SÁCH VÀ CHI TIẾT TUYỂN DỤNG -->
 <div class="kn-main-content">
     
     <!-- VIEW 1: DANH SÁCH CÔNG VIỆC -->
@@ -561,20 +683,20 @@
         <div class="kn-filters">
             <div class="kn-search-box">
                 <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                <input type="text" placeholder="Tìm kiếm vị trí công việc...">
+                <input type="text" id="job-search-input" placeholder="Tìm kiếm vị trí công việc...">
             </div>
         </div>
 
-        <div class="kn-job-list">
+        <div class="kn-job-list" id="job-list-container">
             <!-- Vị trí 1: CTV PA -->
             <div class="kn-job-item">
                 <div class="kn-job-info">
-                    <h3>CTV PA (Trợ lý đạo diễn)</h3>
+                    <h3 class="job-title-text">CTV PA (Trợ lý Đạo diễn)</h3>
                     <div class="kn-tags">
                         <span class="kn-tag">Direction</span>
-                        <span class="kn-tag">Cộng tác viên</span>
                         <span class="kn-tag">HCM</span>
-                        <span class="kn-tag" style="color: #23a99e; border-color: rgba(35,169,158,0.3);">CTV Miễn phí / Không lương</span>
+                        <span class="kn-tag highlight">Dự án Thực chiến</span>
+                        <span class="kn-tag highlight">Xây dựng Portfolio</span>
                     </div>
                 </div>
                 <button class="kn-btn btn-view-detail" data-target="job-pa">
@@ -583,21 +705,26 @@
                 </button>
             </div>
 
-            <!-- Vị trí 2: CTV Truyền thông & Quay BTS -->
+            <!-- Vị trí 2: CTV Truyền thông -->
             <div class="kn-job-item">
                 <div class="kn-job-info">
-                    <h3>CTV Truyền thông</h3>
+                    <h3 class="job-title-text">CTV Truyền thông & Nội dung BTS</h3>
                     <div class="kn-tags">
-                        <span class="kn-tag">Media & BTS</span>
-                        <span class="kn-tag">Cộng tác viên</span>
+                        <span class="kn-tag">Media</span>
                         <span class="kn-tag">HCM</span>
-                        <span class="kn-tag" style="color: #23a99e; border-color: rgba(35,169,158,0.3);">CTV Miễn phí / Không lương</span>
+                        <span class="kn-tag highlight">Dự án Thực chiến</span>
+                        <span class="kn-tag highlight">Xây dựng Portfolio</span>
                     </div>
                 </div>
                 <button class="kn-btn btn-view-detail" data-target="job-bts">
                     Xem chi tiết
                     <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
+            </div>
+            
+            <!-- Thông báo không có kết quả -->
+            <div class="no-results" id="no-results-msg">
+                Không tìm thấy vị trí công việc phù hợp với từ khóa của bạn.
             </div>
         </div>
     </div>
@@ -606,15 +733,15 @@
     <div id="kn-job-detail-view">
         <div class="kn-back-btn" id="btn-back">
             <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-            Quay lại danh sách
+            Trở về danh sách
         </div>
 
         <div class="kn-detail-header">
             <div>
                 <h2 id="detail-job-title">Tên Vị Trí</h2>
                 <div class="kn-tags">
-                    <span class="kn-tag">HCM</span>
-                    <span class="kn-tag">Cộng tác viên (Không lương)</span>
+                    <span class="kn-tag">Hồ Chí Minh</span>
+                    <span class="kn-tag highlight">Production Trainee</span>
                 </div>
             </div>
             <a href="https://forms.gle/cbenVmbzfiTtEYgP8" target="_blank" class="kn-btn">
@@ -626,26 +753,26 @@
         <div class="kn-divider"></div>
 
         <div class="kn-job-desc">
-            <h4>Giới thiệu chung</h4>
-            <p><strong>KN Production</strong> chào đón các bạn sinh viên ít kinh nghiệm, có đam mê lớn với điện ảnh và truyền thông. Đây là chương trình <strong>Cộng tác viên (CTV) miễn phí/không lương</strong>, nhằm tạo môi trường thực chiến để các bạn tham gia học hỏi, trau dồi portfolio cá nhân, tích lũy kiến thức thực tế về quy trình sản xuất phim ngắn và truyền thông chuyên nghiệp.</p>
+            <h4>Tổng quan vai trò</h4>
+            <p><strong>KN Production</strong> luôn rộng cửa chào đón những tài năng trẻ — các bạn sinh viên có đam mê mãnh liệt với nghệ thuật kể chuyện bằng hình ảnh. Thông qua các <strong>Dự án Thực chiến</strong>, chúng tôi tạo ra một môi trường làm việc cởi mở để bạn với vai trò <strong>Trainee</strong> có thể trực tiếp lăn xả trên set quay, học hỏi quy trình sản xuất chuyên nghiệp và tự tay xây dựng một portfolio ấn tượng trước khi chính thức bước vào ngành.</p>
             
             <div id="content-pa" class="job-specific-content" style="display:none;">
-                <h5>MÔ TẢ CÔNG VIỆC: CTV PA (TRỢ LÝ ĐẠO DIỄN)</h5>
+                <h5>Mô tả công việc: CTV PA (Trợ lý Đạo diễn)</h5>
                 <ul>
-                    <li>Hỗ trợ đạo diễn và chủ nhiệm hiện trường trong quá trình chuẩn bị tiền kỳ (lên lịch, quản lý tài liệu hiện trường).</li>
-                    <li>Theo sát đoàn phim trong các ngày quay, hỗ trợ điều phối diễn viên và các bộ phận liên quan trên set.</li>
-                    <li>Học hỏi trực tiếp về quy trình tổ chức, vận hành và góc nhìn đạo diễn trong một sản phẩm phim ngắn.</li>
-                    <li>Yêu cầu: Nhiệt huyết, có trách nhiệm, chủ động và sẵn sàng học hỏi (không yêu cầu kinh nghiệm trước đó).</li>
+                    <li>Hỗ trợ Đạo diễn và Chủ nhiệm hiện trường trong khâu tiền kỳ (chuẩn bị bối cảnh, tài liệu, lên lịch trình).</li>
+                    <li>Theo sát đoàn phim trong các set quay, hỗ trợ điều phối diễn viên, ekip và kiểm soát tiến độ hiện trường.</li>
+                    <li>Học hỏi quy trình vận hành một dự án phim ngắn chuyên nghiệp từ góc nhìn của tổ đạo diễn.</li>
+                    <li><strong>Yêu cầu:</strong> Nhiệt huyết, có khả năng sắp xếp công việc tốt, chịu khó và chủ động. Không yêu cầu kinh nghiệm, sẽ được hướng dẫn trực tiếp khi tham gia.</li>
                 </ul>
             </div>
 
             <div id="content-bts" class="job-specific-content" style="display:none;">
-                <h5>MÔ TẢ CÔNG VIỆC: CTV TRUYỀN THÔNG</h5>
+                <h5>Mô tả công việc: CTV Truyền thông & Nội dung BTS</h5>
                 <ul>
-                    <li>Phụ trách ghi lại hình ảnh, video hậu trường (Behind-the-scenes) trong suốt quá trình đoàn phim bấm máy.</li>
-                    <li>Tham gia lên ý tưởng và hỗ trợ triển khai các nội dung truyền thông cho dự án trên các nền tảng mạng xã hội.</li>
-                    <li>Làm quen với nhịp độ làm việc thực tế của một đoàn phim, hiểu thêm về cách truyền thông cho sản phẩm nghệ thuật.</li>
-                    <li>Yêu cầu: Có tinh thần cầu tiến, yêu thích việc chụp ảnh/quay phim bằng điện thoại hoặc máy ảnh cá nhân, ham học hỏi.</li>
+                    <li>Phụ trách ghi hình, chụp ảnh hậu trường (Behind-the-scenes) trong suốt quá trình đoàn phim bấm máy.</li>
+                    <li>Phối hợp cùng team để lên ý tưởng và triển khai các nội dung truyền thông cho dự án (bài đăng social, short-video).</li>
+                    <li>Cọ xát với nhịp độ làm việc thực tế, hiểu cách định hình hình ảnh truyền thông cho một sản phẩm nghệ thuật.</li>
+                    <li><strong>Yêu cầu:</strong> Có tư duy hình ảnh tốt, yêu thích quay/chụp (có thể sử dụng điện thoại hoặc máy ảnh cá nhân), sáng tạo và nắm bắt xu hướng social.</li>
                 </ul>
             </div>
         </div>
@@ -678,7 +805,7 @@
               <div class="kn-culture-card">
                 <div class="kn-culture-number" style="font-size: 36px; padding-top: 10px; margin-bottom: 25px;">Thực chiến</div>
                 <div class="kn-culture-title">Cơ hội cọ xát</div>
-                <div class="kn-culture-text">Trải nghiệm trực tiếp bầu không khí làm việc của một đoàn phim chuyên nghiệp, hiểu rõ quy trình sản xuất và cách vận hành thực tế.</div>
+                <div class="kn-culture-text">Trải nghiệm trực tiếp bầu không khí làm việc của một đơn vị truyền thông, hiểu rõ quy trình sản xuất và cách vận hành thực tế.</div>
               </div>
               <div class="kn-culture-card">
                 <div class="kn-culture-number" style="font-size: 36px; padding-top: 10px; margin-bottom: 25px;">Sáng tạo</div>
@@ -901,17 +1028,45 @@
           }
       });
   </script>
-
 <script>
+    // 1. CHỨC NĂNG TÌM KIẾM CÔNG VIỆC
+    const searchInput = document.getElementById('job-search-input');
+    const jobItems = document.querySelectorAll('.kn-job-item');
+    const noResultsMsg = document.getElementById('no-results-msg');
+
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        let hasVisibleItems = false;
+
+        jobItems.forEach(item => {
+            const title = item.querySelector('.job-title-text').textContent.toLowerCase();
+            const tags = item.querySelector('.kn-tags').textContent.toLowerCase();
+            
+            if (title.includes(searchTerm) || tags.includes(searchTerm)) {
+                item.style.display = 'flex';
+                hasVisibleItems = true;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        if (!hasVisibleItems) {
+            noResultsMsg.style.display = 'block';
+        } else {
+            noResultsMsg.style.display = 'none';
+        }
+    });
+
+    // 2. CHỨC NĂNG CHUYỂN ĐỔI GIAO DIỆN KÈM HIỆU ỨNG
     const listView = document.getElementById('kn-job-list-view');
     const detailView = document.getElementById('kn-job-detail-view');
     const viewDetailBtns = document.querySelectorAll('.btn-view-detail');
     const backBtn = document.getElementById('btn-back');
+    
     const titleElem = document.getElementById('detail-job-title');
     const contentPA = document.getElementById('content-pa');
     const contentBTS = document.getElementById('content-bts');
 
-    // Thiết lập trạng thái ban đầu cho animation
     listView.style.opacity = '1';
     listView.style.transform = 'translateY(0)';
     detailView.style.opacity = '0';
@@ -921,7 +1076,6 @@
         btn.addEventListener('click', () => {
             const target = btn.getAttribute('data-target');
             
-            // Hiệu ứng ẩn danh sách
             listView.style.opacity = '0';
             listView.style.transform = 'translateY(-15px)';
 
@@ -930,29 +1084,30 @@
                 detailView.style.display = 'block';
                 
                 if(target === 'job-pa') {
-                    titleElem.innerText = "CTV PA (Trợ lý đạo diễn)";
+                    titleElem.innerText = "CTV PA (Trợ lý Đạo diễn)";
                     contentPA.style.display = 'block';
                     contentBTS.style.display = 'none';
                 } else {
-                    titleElem.innerText = "CTV Truyền thông";
+                    titleElem.innerText = "CTV Truyền thông & Nội dung BTS";
                     contentBTS.style.display = 'block';
                     contentPA.style.display = 'none';
                 }
 
-                // Hiệu ứng hiện trang chi tiết
+                // Căn chỉnh khoảng cuộn (tính toán khoảng cách menu trên mobile)
+                const layoutTop = document.querySelector('.kn-hiring-layout').getBoundingClientRect().top + window.scrollY;
+                const offset = window.innerWidth <= 767 ? 80 : 120;
+                window.scrollTo({ top: layoutTop - offset, behavior: 'smooth' });
+
                 setTimeout(() => {
                     detailView.style.opacity = '1';
                     detailView.style.transform = 'translateY(0)';
                 }, 50);
 
-                const layoutTop = document.querySelector('.kn-hiring-layout').getBoundingClientRect().top + window.scrollY;
-                window.scrollTo({ top: layoutTop - 120, behavior: 'smooth' });
             }, 300);
         });
     });
 
     backBtn.addEventListener('click', () => {
-        // Hiệu ứng ẩn trang chi tiết
         detailView.style.opacity = '0';
         detailView.style.transform = 'translateY(15px)';
 
@@ -960,7 +1115,6 @@
             detailView.style.display = 'none';
             listView.style.display = 'block';
 
-            // Hiệu ứng hiện lại danh sách
             setTimeout(() => {
                 listView.style.opacity = '1';
                 listView.style.transform = 'translateY(0)';
